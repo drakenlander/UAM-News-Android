@@ -130,13 +130,6 @@ fun formLogin(navController: NavHostController){
         }
     }
 
-    else {
-        Log.d("404", "ERROR")
-        SimpleAlertDialogue(title = ("Es normal que salga esto"), msg = "$loginModel.email.value") {
-
-        }
-    }
-
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,

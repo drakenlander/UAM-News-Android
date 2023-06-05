@@ -12,7 +12,7 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-class RepositoryUsusario : CoroutineScope by MainScope() {
+class RepositoryUsusario: CoroutineScope by MainScope() {
     val apiUsuario: ApiUsuario  = ApiAdapter.getInstance()
         .create(ApiUsuario::class.java)
 

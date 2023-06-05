@@ -11,7 +11,7 @@ class RepositoryPost( ) {
     private val apiPost : ApiPost = ApiAdapter.getInstance()
         .create(ApiPost::class.java)
 
-    suspend fun getAll() : List<PostItem> {
+    suspend fun getAll(): List<PostItem> {
         try {
             val listLibro = apiPost.getAll()
 
