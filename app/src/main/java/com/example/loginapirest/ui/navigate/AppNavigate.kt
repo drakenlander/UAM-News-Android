@@ -9,6 +9,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.loginapirest.ui.model.PostItem
+import com.example.loginapirest.ui.screen.DetailPostScreen
+import com.example.loginapirest.ui.screen.ListPostScreen
 //import com.example.loginapirest.ui.model.LibroItem
 import com.example.loginapirest.ui.screen.formLogin
 //import com.example.loginapirest.ui.screen.ListLibroScreen
@@ -39,18 +42,18 @@ fun AppNavigate() {
             formLogin(navController)
         }
 
-        /*composable(route= AppScreen.ListLibro.route){
-            ListLibroScreen (navController)
-
+        composable(route = AppScreen.ListPost.route) {
+            ListPostScreen (navController)
         }
-        composable(route= AppScreen.DetailLibro.route + "/{oper}",
-            arguments = listOf(navArgument(name="oper") {type= NavType.StringType}))
+
+        composable(route= AppScreen.DetailPost.route + "/{oper}",
+            arguments = listOf(navArgument(name = "oper") { type= NavType.StringType }))
         {
-            val result = navController.previousBackStackEntry?.savedStateHandle?.get<LibroItem>("item")
+            val result = navController.previousBackStackEntry?.savedStateHandle?.get<PostItem>("item")
             if (result != null) {
-                DetailLibroScreen(navController,result,it.arguments?.getString("oper"))
+                DetailPostScreen(navController, result, it.arguments?.getString("oper"))
             }
-        }*/
+        }
     }
 }
 

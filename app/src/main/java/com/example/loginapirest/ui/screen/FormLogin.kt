@@ -124,16 +124,16 @@ fun formLogin(navController: NavHostController){
     }
 
     if (isSuccess.value) {
-        Log.d("200", "$loginModel.email")
+        Log.d("200", "SUCCESS")
         SimpleAlertDialogue("200", "$loginModel.email.value") {
-            //navController.navigate(route = AppScreen.ListLibro.route)
+            navController.navigate(route = AppScreen.ListPost.route)
         }
     }
 
     else {
         Log.d("404", "ERROR")
-        SimpleAlertDialogue(title = ("404"), msg = "$loginModel.email.value") {
-            //QWERTY
+        SimpleAlertDialogue(title = ("Es normal que salga esto"), msg = "$loginModel.email.value") {
+
         }
     }
 
