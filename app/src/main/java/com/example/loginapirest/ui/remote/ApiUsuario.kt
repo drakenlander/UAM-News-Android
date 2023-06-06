@@ -14,5 +14,5 @@ interface ApiUsuario {
     suspend fun getLogin(@Query("email") email: String, @Query("password") password: String): Response<LoginResponse>
 
     @GET("/originalPoster/get/{id}")
-    suspend fun getById(@Query("id") id: Int): UsuarioItem
+    suspend fun getById(@Query("id") id: Int): List<UsuarioItem>
 }

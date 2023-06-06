@@ -16,7 +16,7 @@ class RepositoryUsuario: CoroutineScope by MainScope() {
     val apiUsuario: ApiUsuario  = ApiAdapter.getInstance()
         .create(ApiUsuario::class.java)
 
-    suspend fun getById(id: Int): UsuarioItem {
+    suspend fun getById(id: Int): List<UsuarioItem> {
         try {
             val u = apiUsuario.getById(id)
 
@@ -26,7 +26,7 @@ class RepositoryUsuario: CoroutineScope by MainScope() {
         }
 
         val emptyD = Department(0, "") //check
-        return UsuarioItem(0, "", "", "", "", emptyD)
+        return emptyList<UsuarioItem>()
     }
 
     suspend fun fetchData(email: String, password: String): Result<LoginResponse> {

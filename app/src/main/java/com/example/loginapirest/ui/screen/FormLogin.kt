@@ -124,7 +124,7 @@ fun formLogin(navController: NavHostController){
     if (isSuccess.value) {
         Log.d("200", "SUCCESS")
         SimpleAlertDialogue("200", "$loginModel.email.value") {
-            //navController.navigate(route = AppScreen.DetailUsuario.route + "/1") //check (Usuario)
+            //navController.navigate(route = AppScreen.DetailUsuario.route + "/2") //check (Usuario)
             navController.navigate(route = AppScreen.Calendar.route)
         }
     }

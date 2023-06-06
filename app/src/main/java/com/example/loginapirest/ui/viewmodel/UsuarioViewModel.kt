@@ -2,6 +2,7 @@ package com.example.loginapirest.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.loginapirest.ui.model.UsuarioDto
 import com.example.loginapirest.ui.model.UsuarioItem
 import com.example.loginapirest.ui.repository.RepositoryUsuario
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,7 +13,8 @@ import kotlinx.coroutines.launch
 class UsuarioViewModel: ViewModel() {
     val repositoryUsuario: RepositoryUsuario = RepositoryUsuario()
 
-    /*private val _usuarioState = MutableStateFlow<UIState>(UIState())
+    private val _usuarioState = MutableStateFlow<UIState>(UIState())
+
     val usuarioState: StateFlow<UIState> = _usuarioState
 
     init {
@@ -26,6 +28,6 @@ class UsuarioViewModel: ViewModel() {
 
     data class UIState(
         val _loading: Boolean = false,
-        val detailUsuario: UsuarioItem
-    )*/
+        val detailUsuario: List<UsuarioItem> = emptyList()
+    )
 }

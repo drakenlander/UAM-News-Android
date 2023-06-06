@@ -73,12 +73,18 @@ fun DetailUsuarioScreen(navController: NavController, usuarioItem: UsuarioItem, 
                             text = item.name, //check
                             color = Color.White
                         )
+                    },navigationIcon = {
+                        IconButton(onClick = { navController.navigate(AppScreen.ListPost.route) },
+                            colors= IconButtonDefaults.filledIconButtonColors(contentColor = Color.White)
+                        ) {
+                            Icon(Icons.Filled.ArrowBack, "backIcon")
+                        }
                     },
                     colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = Color.Blue)
                 )
             }
         ) { padding ->
-            if (oper.equals("1")) {
+            if (oper.equals("2")) {
                 DetailBodyContent(navController, item, modifier = Modifier.padding(padding), detail)
             }
         }
