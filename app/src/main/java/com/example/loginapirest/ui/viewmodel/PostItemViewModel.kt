@@ -18,10 +18,10 @@ class PostItemViewModel: ViewModel() {
 
     val repositoryPost = RepositoryPost()
 
-    fun addPost(item: PostDto) {
+    /*fun addPost(item: PostDto) {
         viewModelScope.launch {
             repositoryPost.addPost(item)
             _state.update { true }
         }
-    }
+    }*/
 }

@@ -54,13 +54,13 @@ fun ListPostScreen(navController: NavController) {
                                 color = Color.White
                             )
                         },
-                        navigationIcon = {
+                        /*navigationIcon = {
                             IconButton(onClick = { navController.navigate(AppScreen.ListPost.route) },
                                 colors= IconButtonDefaults.filledIconButtonColors(contentColor = Color.White)
                             ) {
                                 Icon(Icons.Filled.ArrowBack, "backIcon")
                             }
-                        },
+                        },*/
                         colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = Color.Black),
                         )
                 }

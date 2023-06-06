@@ -61,11 +61,11 @@ fun PostItem(postItem: PostItem, navController: NavController, modifier: Modifie
                     style = MaterialTheme.typography.labelMedium,
                     fontWeight = FontWeight.Bold
                 )
-                IconButton(onClick = {
+                /*IconButton(onClick = {
                     navController.currentBackStackEntry?.savedStateHandle?.set("item", postItem)
                     navController.navigate(AppScreen.DetailPost.route + "/UPDATE")}) {
                     Icon(painter = painterResource(R.drawable.ic_desing_libro_update), contentDescription =null )
-                }
+                }*/
             }
         }
     }

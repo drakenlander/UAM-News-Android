@@ -23,12 +23,12 @@ class RepositoryPost( ) {
         return emptyList<PostItem>()
     }
 
-    suspend fun addPost(item: PostDto)   {
+    /*suspend fun addPost(item: PostDto)   {
         try
         {
             apiPost.save(item)
         } catch (e: Exception) {
             Log.d("ERROR", e.message.toString())
         }
-    }
+    }*/
 }
