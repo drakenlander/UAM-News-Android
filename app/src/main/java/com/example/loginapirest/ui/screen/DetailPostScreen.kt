@@ -63,15 +63,8 @@ fun DetailPostScreen(navController: NavController, postItem: PostItem, oper: Str
                     title = {
                         Text(
                             text = item.caption, //check
-                            color=Color.White
+                            color = Color.White
                         )
-                    },
-                    navigationIcon = {
-                        IconButton(onClick = { navController.navigate(AppScreen.ListPost.route) },
-                            colors= IconButtonDefaults.filledIconButtonColors(contentColor = Color.White)
-                        ) {
-                            Icon(Icons.Filled.ArrowBack, "backIcon")
-                        }
                     },
                     colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = Color.Blue)
                 )
@@ -133,7 +126,7 @@ fun AddBodyContent(navController: NavController, item: PostItem, modifier: Modif
                         .fillMaxHeight()
                         .weight(0.8f)
                 ) {
-                    Text(text = "ID: ${id.toString()}",
+                    Text(text = "ID: ${ id.toString() }",
                         style = MaterialTheme.typography.labelMedium,
                         fontWeight = FontWeight.Bold
                     )

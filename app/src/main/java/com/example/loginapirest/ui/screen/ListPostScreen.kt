@@ -61,7 +61,7 @@ fun ListPostScreen(navController: NavController) {
                                 Icon(Icons.Filled.ArrowBack, "backIcon")
                             }
                         },
-                        colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = Color.Blue),
+                        colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = Color.Black),
                         )
                 }
             ) { padding ->
@@ -88,7 +88,11 @@ fun Posts(state: PostViewModel.UIState, modifier: Modifier, navController: NavCo
         ) {
             itemsIndexed(items = state.listPost) { index, item ->
                 PostItem(postItem = item, navController, modifier)
-                Text(text = item.caption) //check
+                //Text(text = item.publicationDate)
+                Text(text = item.saveCount.toString())
+                Text(text = item.caption)
+                Text(text = item.department.name.toString())
+                Text(text = item.category.name.toString())
             }
         }
     }
