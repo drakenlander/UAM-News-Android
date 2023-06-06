@@ -12,6 +12,6 @@ interface ApiPost {
     @GET("/textPost/all")
     suspend fun getAll(): List<PostItem>
 
-    @POST("/textPost/save/")
+    @POST("/textPost/save")
     suspend fun save(@Body item: PostDto)
 }
