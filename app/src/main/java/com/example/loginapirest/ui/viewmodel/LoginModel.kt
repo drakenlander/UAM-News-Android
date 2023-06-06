@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.viewModelScope
-import com.example.loginapirest.ui.repository.RepositoryUsusario
+import com.example.loginapirest.ui.repository.RepositoryUsuario
 import com.example.loginapirest.ui.response.LoginResponse
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -20,14 +20,14 @@ class LoginModel: ViewModel() {
     var _state = MutableStateFlow(UIState())
     val state: StateFlow<UIState> = _state.asStateFlow()
 
-    val repository = RepositoryUsusario()
+    val repository = RepositoryUsuario()
 
     data class UIState(
         val _loading: Boolean = false,
         val loginResponse: LoginResponse = LoginResponse()
     )
 
-    fun onSummit()  {
+    fun onSubmit()  {
         viewModelScope.launch {
             _state.update { it.copy(_loading = true) }
             val login = repository.fetchData(email, password).getOrDefault(LoginResponse())

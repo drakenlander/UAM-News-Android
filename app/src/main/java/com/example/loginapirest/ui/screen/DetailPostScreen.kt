@@ -70,9 +70,9 @@ fun DetailPostScreen(navController: NavController, postItem: PostItem, oper: Str
                 )
             }
         ) { padding ->
-            /*if (oper.equals("UPDATE")) {
+            if (oper.equals("UPDATE")) {
                 AddBodyContent(navController, item, modifier = Modifier.padding(padding), detail)
-            }*/
+            }
 
             if (oper.equals("DETAIL")) {
                 DetailBodyContent(navController, item, modifier = Modifier.padding(padding), detail)
@@ -86,7 +86,7 @@ fun DetailBodyContent(navController: NavController, item: PostItem, modifier: Mo
 
 }
 
-/*@Composable
+@Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun AddBodyContent(navController: NavController, item: PostItem, modifier: Modifier, detail: PostItemViewModel) {
     var id by rememberSaveable { mutableStateOf(item.postId) }
@@ -103,7 +103,7 @@ fun AddBodyContent(navController: NavController, item: PostItem, modifier: Modif
         navController.navigate(AppScreen.ListPost.route)
     }
 
-    Box( modifier = modifier)
+    Box(modifier = modifier)
     {
         Card(
             modifier = Modifier
@@ -146,4 +146,4 @@ fun AddBodyContent(navController: NavController, item: PostItem, modifier: Modif
             }
         }
     }
-}*/
+}

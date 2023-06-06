@@ -24,11 +24,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavController
 import com.example.loginapirest.R
-import com.example.loginapirest.ui.model.PostItem
+import com.example.loginapirest.ui.model.UsuarioItem
 import com.example.loginapirest.ui.navigate.AppScreen
 
 @Composable
-fun PostItem(postItem: PostItem, navController: NavController, modifier: Modifier) {
+fun UsuarioItem(usuarioItem: UsuarioItem, navController: NavController, modifier: Modifier) {
     val context = LocalContext.current
 
     Card(
@@ -52,20 +52,15 @@ fun PostItem(postItem: PostItem, navController: NavController, modifier: Modifie
                     .fillMaxHeight()
                     .weight(0.8f)
                     .clickable {
-                        navController.currentBackStackEntry?.savedStateHandle?.set("item", postItem)
-                        navController.navigate(AppScreen.DetailPost.route + "/DETAIL")
+                        navController.currentBackStackEntry?.savedStateHandle?.set("item", usuarioItem)
+                        navController.navigate(AppScreen.DetailUsuario.route + "/" + usuarioItem.usId)
                     }
             ) {
                 Text(
-                    text = postItem.caption, //check
+                    text = usuarioItem.name, //check
                     style = MaterialTheme.typography.labelMedium,
                     fontWeight = FontWeight.Bold
                 )
-                IconButton(onClick = {
-                    navController.currentBackStackEntry?.savedStateHandle?.set("item", postItem)
-                    navController.navigate(AppScreen.DetailPost.route + "/UPDATE")}) {
-                    Icon(painter = painterResource(R.drawable.ic_desing_libro_update), contentDescription = null )
-                }
             }
         }
     }

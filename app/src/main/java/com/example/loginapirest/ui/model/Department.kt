@@ -7,6 +7,6 @@ import kotlinx.serialization.Serializable
 @Parcelize
 @Serializable
 data class Department(
-    val deptId: Int,
+    var deptId: Int,
     val name: String
 ) : Parcelable

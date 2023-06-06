@@ -1,6 +1,5 @@
 package com.example.loginapirest.ui.screen
 
-import android.app.AlertDialog
 import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -39,7 +38,6 @@ import com.example.loginapirest.R
 import com.example.loginapirest.ui.activity.SimpleAlertDialogue
 import com.example.loginapirest.ui.viewmodel.LoginModel
 import com.example.loginapirest.ui.navigate.AppScreen
-import com.example.loginapirest.ui.navigate.AppNavigate
 
 @Composable
 fun Circular() {
@@ -91,7 +89,7 @@ fun passwordField(loginModel: LoginModel) {
 
 @Composable
 fun button(loginModel: LoginModel) {
-    Button(onClick = loginModel::onSummit,
+    Button(onClick = loginModel::onSubmit,
         modifier = Modifier.padding(top = 16.dp)) {
         Text(text = "OK")
     }
@@ -126,7 +124,8 @@ fun formLogin(navController: NavHostController){
     if (isSuccess.value) {
         Log.d("200", "SUCCESS")
         SimpleAlertDialogue("200", "$loginModel.email.value") {
-            navController.navigate(route = AppScreen.ListPost.route)
+            //navController.navigate(route = AppScreen.DetailUsuario.route + "/1") //check (Usuario)
+            navController.navigate(route = AppScreen.Calendar.route)
         }
     }
 

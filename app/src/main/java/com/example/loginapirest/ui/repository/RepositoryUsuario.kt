@@ -1,20 +1,33 @@
 package com.example.loginapirest.ui.repository
 
-import android.content.Context
 import android.util.Log
-import android.widget.Toast
-import androidx.compose.ui.platform.LocalContext
+import com.example.loginapirest.ui.model.Department
+import com.example.loginapirest.ui.model.PostItem
+import com.example.loginapirest.ui.model.UsuarioDto
+import com.example.loginapirest.ui.model.UsuarioItem
 import com.example.loginapirest.ui.remote.ApiAdapter
 import com.example.loginapirest.ui.remote.ApiUsuario
 import com.example.loginapirest.ui.response.LoginResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
 import retrofit2.Response
 
-class RepositoryUsusario: CoroutineScope by MainScope() {
+class RepositoryUsuario: CoroutineScope by MainScope() {
     val apiUsuario: ApiUsuario  = ApiAdapter.getInstance()
         .create(ApiUsuario::class.java)
+
+    suspend fun getById(id: Int): UsuarioItem {
+        try {
+            val u = apiUsuario.getById(id)
+
+            return u
+        } catch (e: Exception) {
+            Log.d("ERROR", e.message.toString())
+        }
+
+        val emptyD = Department(0, "") //check
+        return UsuarioItem(0, "", "", "", "", emptyD)
+    }
 
     suspend fun fetchData(email: String, password: String): Result<LoginResponse> {
         var  loginResponse: LoginResponse = LoginResponse()
