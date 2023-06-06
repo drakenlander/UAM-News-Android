@@ -51,7 +51,7 @@ fun ListPostScreen(navController: NavController) {
                         title = {
                             Text(
                                 text = "Main Feed",
-                                color=Color.White
+                                color = Color.White
                             )
                         },
                         navigationIcon = {
@@ -88,7 +88,7 @@ fun Posts(state: PostViewModel.UIState, modifier: Modifier, navController: NavCo
         ) {
             itemsIndexed(items = state.listPost) { index, item ->
                 PostItem(postItem = item, navController, modifier)
-                //Text(text = item.qwerty)
+                Text(text = item.caption) //check
             }
         }
     }

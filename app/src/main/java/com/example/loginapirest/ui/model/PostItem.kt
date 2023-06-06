@@ -1,18 +1,19 @@
 package com.example.loginapirest.ui.model
 
-import android.os.Parcelable
+//import android.os.Parcelable
 import androidx.versionedparcelable.VersionedParcelize
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Serializer
 
-@Parcelize
-@Serializable
+//@Parcelize
+//@Serializable
 data class PostItem(
     val postId: Int,
-    //val publicationDate: ,
+    val publicationDate: String,
     val saveCount: Int,
     val caption: String,
-    val department: String,
-    val category: String
-): Parcelable
+    val department: Department,
+    val category: Category
+)
+//: Parcelable

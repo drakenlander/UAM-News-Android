@@ -8,15 +8,15 @@ import com.example.loginapirest.ui.remote.ApiPost
 import retrofit2.Response
 
 class RepositoryPost( ) {
-    private val apiPost : ApiPost = ApiAdapter.getInstance()
+    private val apiPost: ApiPost = ApiAdapter.getInstance()
         .create(ApiPost::class.java)
 
     suspend fun getAll(): List<PostItem> {
         try {
-            val listLibro = apiPost.getAll()
+            val listPost = apiPost.getAll()
 
-            return listLibro
-        } catch (e : Exception) {
+            return listPost
+        } catch (e: Exception) {
             Log.d("ERROR", e.message.toString());
         }
 

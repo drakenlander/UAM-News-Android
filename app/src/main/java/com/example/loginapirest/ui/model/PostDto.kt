@@ -4,9 +4,9 @@ import java.time.chrono.ChronoLocalDateTime
 
 data class PostDto(
     val postId: Int,
-    //val publicationDate: ,
+    val publicationDate: String,
     val saveCount: Int,
     val caption: String,
-    val department: String,
-    val category: String
+    val department: Department,
+    val category: Category
     )

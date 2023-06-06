@@ -12,10 +12,7 @@ import androidx.navigation.navArgument
 import com.example.loginapirest.ui.model.PostItem
 import com.example.loginapirest.ui.screen.DetailPostScreen
 import com.example.loginapirest.ui.screen.ListPostScreen
-//import com.example.loginapirest.ui.model.LibroItem
 import com.example.loginapirest.ui.screen.formLogin
-//import com.example.loginapirest.ui.screen.ListLibroScreen
-//import com.example.loginapirest.ui.screen.DetailLibroScreen
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
@@ -23,21 +20,6 @@ import kotlinx.serialization.json.Json
 fun AppNavigate() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = AppScreen.FormLogin.route) {
-        /*composable(route= AppScreen.FormLoginScreen.route) {
-            FormLogin(navController)
-        }
-        composable(route= AppScreen.ListLibroScreen.route){
-            ListLibroScreen (onItemClick = {
-                navController.navigate(AppScreen.DetailLibroScreen.createRoute(it))}
-            );
-        }
-        composable(route= AppScreen.DetailLibroScreen.route
-            , arguments = listOf( navArgument(NavArg.Item.key) { type = NavType.parcelableTypeOf<LibroItem>() }) )
-        {
-            navBackStackEntry -> var item = navBackStackEntry.arguments?.get("item")
-            DetailLibroScreen(navController, item as LibroItem)
-        }*/
-
         composable(route= AppScreen.FormLogin.route) {
             formLogin(navController)
         }
@@ -47,7 +29,7 @@ fun AppNavigate() {
         }
 
         composable(route= AppScreen.DetailPost.route + "/{oper}",
-            arguments = listOf(navArgument(name = "oper") { type= NavType.StringType }))
+            arguments = listOf(navArgument(name = "oper") { type = NavType.StringType }))
         {
             val result = navController.previousBackStackEntry?.savedStateHandle?.get<PostItem>("item")
             if (result != null) {

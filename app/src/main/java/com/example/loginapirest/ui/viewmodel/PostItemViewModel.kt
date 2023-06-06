@@ -16,9 +16,6 @@ class PostItemViewModel: ViewModel() {
     var _state = MutableStateFlow(false)
     val state: StateFlow<Boolean> = _state
 
-    /*var _state = MutableStateFlow(UIState())
-    val state : StateFlow<UIState> = _state.asStateFlow()*/
-
     val repositoryPost = RepositoryPost()
 
     fun addPost(item: PostDto) {
@@ -26,13 +23,5 @@ class PostItemViewModel: ViewModel() {
             repositoryPost.addPost(item)
             _state.update { true }
         }
-
-        /*
-         viewModelScope.launch {
-             _state.update { it.copy(_loading = true) }
-             val login = repository.fetchData(name,password).getOrDefault(LoginResponse())
-             _state.update{it.copy(loginResponse = login)}
-             _state.update { it.copy(_loading = false) }
-         }*/
     }
 }

@@ -97,7 +97,7 @@ fun DetailBodyContent(navController: NavController, item: PostItem, modifier: Mo
 @OptIn(ExperimentalMaterial3Api::class)
 fun AddBodyContent(navController: NavController, item: PostItem, modifier: Modifier, detail: PostItemViewModel) {
     var id by rememberSaveable { mutableStateOf(item.postId) }
-    //var publicationDate by rememebrSaveable { mutableStateOf(item.publicationDate) }
+    var publicationDate by rememberSaveable { mutableStateOf(item.publicationDate) }
     var saveCount by rememberSaveable { mutableStateOf(item.saveCount) }
     var caption by rememberSaveable { mutableStateOf(item.caption) }
     val department by rememberSaveable { mutableStateOf(item.department) }
@@ -144,7 +144,7 @@ fun AddBodyContent(navController: NavController, item: PostItem, modifier: Modif
                         singleLine = true,
                         maxLines = 1
                     )
-                    Button(onClick = { detail.addPost(PostDto(id, saveCount, caption, department, category)) }
+                    Button(onClick = { detail.addPost(PostDto(id, publicationDate, saveCount, caption, department, category)) }
                     )
                     {
                         Text(text = "Save")
