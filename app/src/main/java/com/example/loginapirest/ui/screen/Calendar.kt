@@ -6,7 +6,6 @@ import android.widget.DatePicker
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -19,35 +18,40 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.loginapirest.ui.model.PostItem
-import com.example.loginapirest.ui.model.UsuarioItem
-import java.time.LocalDate
 
 import android.app.DatePickerDialog
 import android.os.Build
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+import com.example.loginapirest.ui.navigate.AppScreen
 import java.util.*
 
 @RequiresApi(Build.VERSION_CODES.N)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Calendar(navController: NavController) {
+fun Calendar() {
+    val navController = rememberNavController()
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
@@ -63,12 +67,67 @@ fun Calendar(navController: NavController) {
                     },
                     colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = Color.Blue)
                 )
+            },
+            bottomBar = {
+                BottomBarC(navController = navController)
             }
         ) {
             DatePickerSample()
         }
     }
 }
+
+@Composable
+fun BottomBarC(navController: NavController){
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentDestination = navBackStackEntry?.destination
+
+    NavigationBar() {
+        NavigationBarItem(
+            label = {
+                Text(text = "Home")
+            },
+            icon = {
+                Icon(imageVector = Icons.Default.Home, contentDescription = "Navigation Icon")
+            },
+            selected = currentDestination?.hierarchy?.any {
+                it.route == AppScreen.ListPost.route
+            } == true,
+            onClick = {
+                navController.navigate(AppScreen.ListPost.route)
+            }
+        )
+        NavigationBarItem(
+            label = {
+                Text(text = "Calendar")
+            },
+            icon = {
+                Icon(imageVector = Icons.Default.DateRange, contentDescription = "Navigation Icon")
+            },
+            selected = currentDestination?.hierarchy?.any {
+                it.route == AppScreen.Calendar.route
+            } == true,
+            onClick = {
+                navController.navigate(AppScreen.Calendar.route)
+            }
+        )
+        NavigationBarItem(
+            label = {
+                Text(text = "Profile")
+            },
+            icon = {
+                Icon(imageVector = Icons.Default.Person, contentDescription = "Navigation Icon")
+            },
+            selected = currentDestination?.hierarchy?.any {
+                it.route == AppScreen.DetailUsuario.route
+            } == true,
+            onClick = {
+                navController.navigate(AppScreen.DetailUsuario.route)
+            }
+        )
+    }
+}
+
 
 @RequiresApi(Build.VERSION_CODES.N)
 @Composable

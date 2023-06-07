@@ -8,12 +8,17 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -29,7 +34,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
-import com.example.loginapirest.ui.model.PostItem
+import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.loginapirest.ui.navigate.AppScreen
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -63,11 +69,65 @@ fun ListPostScreen(navController: NavController) {
                         },
                         colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = Color.Blue),
                         )
+                },
+                bottomBar = {
+                    BottomBarLPS(navController = navController)
                 }
             ) { padding ->
                 Posts(state, modifier = Modifier.padding(padding), navController)
             }
         }
+    }
+}
+
+@Composable
+fun BottomBarLPS(navController: NavController){
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentDestination = navBackStackEntry?.destination
+
+    NavigationBar() {
+        NavigationBarItem(
+            label = {
+                Text(text = "Home")
+            },
+            icon = {
+                Icon(imageVector = Icons.Default.Home, contentDescription = "Navigation Icon")
+            },
+            selected = currentDestination?.hierarchy?.any {
+                it.route == AppScreen.ListPost.route
+            } == true,
+            onClick = {
+                navController.navigate(AppScreen.ListPost.route)
+            }
+        )
+        NavigationBarItem(
+            label = {
+                Text(text = "Calendar")
+            },
+            icon = {
+                Icon(imageVector = Icons.Default.DateRange, contentDescription = "Navigation Icon")
+            },
+            selected = currentDestination?.hierarchy?.any {
+                it.route == AppScreen.Calendar.route
+            } == true,
+            onClick = {
+                navController.navigate(AppScreen.Calendar.route)
+            }
+        )
+        NavigationBarItem(
+            label = {
+                Text(text = "Profile")
+            },
+            icon = {
+                Icon(imageVector = Icons.Default.Person, contentDescription = "Navigation Icon")
+            },
+            selected = currentDestination?.hierarchy?.any {
+                it.route == AppScreen.DetailUsuario.route
+            } == true,
+            onClick = {
+                navController.navigate(AppScreen.DetailUsuario.route)
+            }
+        )
     }
 }
 

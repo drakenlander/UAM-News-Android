@@ -21,9 +21,9 @@ import androidx.navigation.NavController
 @Composable
 @Preview
 fun ScaffoldSample() {
-    val scaffoldState = rememberScaffoldState(rememberDrawerState(DrawerValue.Closed))
+    /*val scaffoldState = rememberScaffoldState(rememberDrawerState(DrawerValue.Closed))
     Scaffold (
         scaffoldState = scaffoldState,
         bottomBar = { BottomAppBar(backgroundColor = MaterialTheme.colors.primary) { Text("Bottom App Bar") } }
-    )
+    )*/
 }

@@ -129,7 +129,7 @@ fun formLogin(navController: NavHostController){
     if (isSuccess) {
         LaunchedEffect(Unit) {
             navController.currentBackStackEntry?.savedStateHandle?.set("usuario",usuario.value)
-            navController.navigate(route = AppScreen.DetailUsuario.route)
+            navController.navigate(route = AppScreen.ListPost.route)
         }
     }
 

@@ -12,15 +12,17 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -41,6 +43,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.loginapirest.ui.model.PostDto
 import com.example.loginapirest.ui.model.PostItem
 import com.example.loginapirest.ui.navigate.AppScreen
@@ -68,6 +72,9 @@ fun DetailPostScreen(navController: NavController, postItem: PostItem, oper: Str
                     },
                     colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = Color.Blue)
                 )
+            },
+            bottomBar = {
+                BottomBarDPS(navController = navController)
             }
         ) { padding ->
             if (oper.equals("UPDATE")) {
@@ -78,6 +85,57 @@ fun DetailPostScreen(navController: NavController, postItem: PostItem, oper: Str
                 DetailBodyContent(navController, item, modifier = Modifier.padding(padding), detail)
             }
         }
+    }
+}
+
+@Composable
+fun BottomBarDPS(navController: NavController){
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentDestination = navBackStackEntry?.destination
+
+    NavigationBar() {
+        NavigationBarItem(
+            label = {
+                Text(text = "Home")
+            },
+            icon = {
+                Icon(imageVector = Icons.Default.Home, contentDescription = "Navigation Icon")
+            },
+            selected = currentDestination?.hierarchy?.any {
+                it.route == AppScreen.ListPost.route
+            } == true,
+            onClick = {
+                navController.navigate(AppScreen.ListPost.route)
+            }
+        )
+        NavigationBarItem(
+            label = {
+                Text(text = "Calendar")
+            },
+            icon = {
+                Icon(imageVector = Icons.Default.DateRange, contentDescription = "Navigation Icon")
+            },
+            selected = currentDestination?.hierarchy?.any {
+                it.route == AppScreen.Calendar.route
+            } == true,
+            onClick = {
+                navController.navigate(AppScreen.Calendar.route)
+            }
+        )
+        NavigationBarItem(
+            label = {
+                Text(text = "Profile")
+            },
+            icon = {
+                Icon(imageVector = Icons.Default.Person, contentDescription = "Navigation Icon")
+            },
+            selected = currentDestination?.hierarchy?.any {
+                it.route == AppScreen.DetailUsuario.route
+            } == true,
+            onClick = {
+                navController.navigate(AppScreen.DetailUsuario.route)
+            }
+        )
     }
 }
 

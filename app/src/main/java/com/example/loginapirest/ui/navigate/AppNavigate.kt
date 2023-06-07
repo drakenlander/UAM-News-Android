@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Parcelable
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -32,7 +33,7 @@ fun AppNavigate() {
         }
 
         composable(route = AppScreen.Calendar.route) {
-            Calendar(navController = navController)
+            Calendar()
         }
 
         /*composable(route = AppScreen.DetailPost.route + "/{oper}",
