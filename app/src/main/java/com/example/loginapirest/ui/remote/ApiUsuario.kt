@@ -1,7 +1,6 @@
 package com.example.loginapirest.ui.remote
 
 import com.example.loginapirest.ui.model.LoginResponse
-import com.example.loginapirest.ui.model.UsuarioItem
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

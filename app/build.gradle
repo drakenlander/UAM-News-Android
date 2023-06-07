@@ -81,6 +81,9 @@ dependencies {
         implementation "androidx.navigation:navigation-compose:$nav_version"
     }
 
+    //prefs
+    implementation "androidx.preference:preference-ktx:1.2.0"
+
 
     androidTestImplementation platform('androidx.compose:compose-bom:2022.10.00')
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4'

@@ -3,7 +3,6 @@ package com.example.loginapirest.ui.repository
 import android.util.Log
 import com.example.loginapirest.ui.model.Department
 import com.example.loginapirest.ui.model.LoginResponse
-import com.example.loginapirest.ui.model.UsuarioItem
 import com.example.loginapirest.ui.remote.ApiAdapter
 import com.example.loginapirest.ui.remote.ApiUsuario
 import kotlinx.coroutines.CoroutineScope

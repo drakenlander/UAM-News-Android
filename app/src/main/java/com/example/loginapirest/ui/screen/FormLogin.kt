@@ -1,5 +1,7 @@
 package com.example.loginapirest.ui.screen
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -35,10 +37,10 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.loginapirest.R
-import com.example.loginapirest.ui.activity.SimpleAlertDialogue
 import com.example.loginapirest.ui.model.Usuario
-import com.example.loginapirest.ui.viewmodel.LoginModel
 import com.example.loginapirest.ui.navigate.AppScreen
+import com.example.loginapirest.ui.viewmodel.LoginModel
+
 
 @Composable
 fun Circular() {
@@ -106,15 +108,16 @@ fun formLogin(navController: NavHostController){
     var isLoading by remember { mutableStateOf(false) }
     var isSuccess by remember { mutableStateOf(false) }
     //var item : Usuario = Usuario()
-    var usuario = remember { mutableStateOf(Usuario()) }
+    var usuario by rememberSaveable() { mutableStateOf(Usuario()) }
 
     LaunchedEffect(state) {
         isLoading = state._loading
         Log.d("LOADING...", isLoading.toString())
         isSuccess = state.loginResponse.success
+
         if (state.loginResponse.usuario != null) {
-            usuario.value = state.loginResponse.usuario!!
-            Log.d("SUCCESS!", usuario.value.name)
+            usuario = state.loginResponse.usuario!!
+            Log.d("SUCCESS!", usuario.name)
         }
     }
 
@@ -128,8 +131,8 @@ fun formLogin(navController: NavHostController){
 
     if (isSuccess) {
         LaunchedEffect(Unit) {
-            navController.currentBackStackEntry?.savedStateHandle?.set("usuario",usuario.value)
-            navController.navigate(route = AppScreen.ListPost.route)
+            navController.currentBackStackEntry?.savedStateHandle?.set("usuario",usuario)
+            navController.navigate(route = AppScreen.DetailUsuario.route)
         }
     }
 
