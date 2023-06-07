@@ -45,9 +45,9 @@ fun DetailUsuarioScreen(navController: NavController, result: Usuario?) {
             BottomBarU(navController = navController)
         }
     ) { padding ->
-        Box(modifier = Modifier.padding()){
+        Box(modifier = Modifier.padding(padding)){
             if (result != null) {
-                Text(text = "usuario: ${ result.name }")
+                Text(text = "usuario: ${result.name}")
             }
         }
     }
