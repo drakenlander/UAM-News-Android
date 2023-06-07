@@ -164,7 +164,7 @@ fun DatePickerSample() {
     Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
         Button(onClick = {
             mDatePickerDialog.show()
-        }, colors = ButtonDefaults.buttonColors(Color(0, 156, 170)) ) {
+        }, colors = ButtonDefaults.buttonColors(Color(0, 156, 170))) {
             Text(text = "Abrir Calendario de Actividades", color = Color.White)
         }
 

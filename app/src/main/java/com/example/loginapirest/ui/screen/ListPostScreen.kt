@@ -62,12 +62,12 @@ fun ListPostScreen(navController: NavController) {
                         },
                         navigationIcon = {
                             IconButton(onClick = { navController.navigate(AppScreen.ListPost.route) },
-                                colors= IconButtonDefaults.filledIconButtonColors(contentColor = Color.White)
+                                colors= IconButtonDefaults.filledIconButtonColors(contentColor = (Color(0, 156, 170)))
                             ) {
                                 Icon(Icons.Filled.ArrowBack, "backIcon")
                             }
                         },
-                        colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = Color.Blue),
+                        colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = (Color(0, 156, 170))),
                         )
                 },
                 bottomBar = {
@@ -81,7 +81,7 @@ fun ListPostScreen(navController: NavController) {
 }
 
 @Composable
-fun BottomBarLPS(navController: NavController){
+fun BottomBarLPS(navController: NavController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
 

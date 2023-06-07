@@ -13,19 +13,6 @@ class RepositoryUsuario: CoroutineScope by MainScope() {
     val apiUsuario: ApiUsuario  = ApiAdapter.getInstance()
         .create(ApiUsuario::class.java)
 
-    suspend fun getById(id: Int): List<UsuarioItem> {
-        try {
-            val u = apiUsuario.getById(id)
-
-            return u
-        } catch (e: Exception) {
-            Log.d("ERROR", e.message.toString())
-        }
-
-        val emptyD = Department(0, "") //check
-        return emptyList<UsuarioItem>()
-    }
-
     suspend fun fetchData(email: String, password: String): Result<LoginResponse> {
         var  loginResponse: LoginResponse = LoginResponse()
 

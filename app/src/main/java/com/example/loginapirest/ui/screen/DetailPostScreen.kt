@@ -70,7 +70,7 @@ fun DetailPostScreen(navController: NavController, postItem: PostItem, oper: Str
                             color = Color.White
                         )
                     },
-                    colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = Color.Blue)
+                    colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = (Color(0, 156, 170)))
                 )
             }
         ) { padding ->

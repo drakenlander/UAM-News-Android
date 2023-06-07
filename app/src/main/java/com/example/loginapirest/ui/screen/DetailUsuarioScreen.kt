@@ -38,7 +38,7 @@ fun DetailUsuarioScreen(navController: NavController, result: Usuario?) {
                         color = Color.White
                     )
                 },
-                colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = Color.Blue)
+                colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = (Color(0, 156, 170)))
             )
         },
         bottomBar = {
