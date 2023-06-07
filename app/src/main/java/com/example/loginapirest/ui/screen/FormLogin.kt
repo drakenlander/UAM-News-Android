@@ -36,6 +36,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.loginapirest.R
 import com.example.loginapirest.ui.activity.SimpleAlertDialogue
+import com.example.loginapirest.ui.model.Usuario
 import com.example.loginapirest.ui.viewmodel.LoginModel
 import com.example.loginapirest.ui.navigate.AppScreen
 
@@ -102,18 +103,22 @@ fun formLogin(navController: NavHostController){
     val loginModel : LoginModel = viewModel()
     val context = LocalContext.current
     val state by loginModel.state.collectAsState()
-    val isLoading = remember { mutableStateOf(false) }
-    val isSuccess = remember { mutableStateOf(false) }
-    var show by rememberSaveable { mutableStateOf(false) }
+    var isLoading by remember { mutableStateOf(false) }
+    var isSuccess by remember { mutableStateOf(false) }
+    //var item : Usuario = Usuario()
+    var usuario = remember { mutableStateOf(Usuario()) }
 
     LaunchedEffect(state) {
-        isLoading.value = state._loading
+        isLoading = state._loading
         Log.d("LOADING...", isLoading.toString())
-        isSuccess.value = state.loginResponse.success
-        Log.d("SUCCESS!", isSuccess.toString())
+        isSuccess = state.loginResponse.success
+        if (state.loginResponse.usuario != null) {
+            usuario.value = state.loginResponse.usuario!!
+            Log.d("SUCCESS!", usuario.value.name)
+        }
     }
 
-    if (isLoading.value) {
+    if (isLoading) {
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier.fillMaxSize()) {
@@ -121,11 +126,10 @@ fun formLogin(navController: NavHostController){
         }
     }
 
-    if (isSuccess.value) {
-        Log.d("200", "SUCCESS")
-        SimpleAlertDialogue("200", "$loginModel.email.value") {
-            //navController.navigate(route = AppScreen.DetailUsuario.route + "/2") //check (Usuario)
-            navController.navigate(route = AppScreen.Calendar.route)
+    if (isSuccess) {
+        LaunchedEffect(Unit) {
+            navController.currentBackStackEntry?.savedStateHandle?.set("usuario",usuario.value)
+            navController.navigate(route = AppScreen.DetailUsuario.route)
         }
     }
 
@@ -141,3 +145,4 @@ fun formLogin(navController: NavHostController){
         button(loginModel)
     }
 }
+

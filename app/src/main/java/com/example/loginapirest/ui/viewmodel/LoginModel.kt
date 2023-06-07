@@ -5,8 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.viewModelScope
+import com.example.loginapirest.ui.model.LoginResponse
 import com.example.loginapirest.ui.repository.RepositoryUsuario
-import com.example.loginapirest.ui.response.LoginResponse
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

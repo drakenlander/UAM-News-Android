@@ -2,12 +2,10 @@ package com.example.loginapirest.ui.repository
 
 import android.util.Log
 import com.example.loginapirest.ui.model.Department
-import com.example.loginapirest.ui.model.PostItem
-import com.example.loginapirest.ui.model.UsuarioDto
+import com.example.loginapirest.ui.model.LoginResponse
 import com.example.loginapirest.ui.model.UsuarioItem
 import com.example.loginapirest.ui.remote.ApiAdapter
 import com.example.loginapirest.ui.remote.ApiUsuario
-import com.example.loginapirest.ui.response.LoginResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import retrofit2.Response
