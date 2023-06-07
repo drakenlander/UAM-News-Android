@@ -14,5 +14,5 @@ data class Usuario(
     val phoneNumber: String,
     val usId: Int
 ) : Parcelable {
-    constructor():this(null,"","","","",0)
+    constructor(): this(null, "", "", "", "", 0)
 }

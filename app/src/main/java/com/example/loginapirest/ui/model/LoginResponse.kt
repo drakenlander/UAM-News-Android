@@ -4,7 +4,6 @@ data class LoginResponse(
     val msg: String,
     val success: Boolean,
     val usuario: Usuario?
-)
-{
-    constructor():this("",false,null)
+) {
+    constructor(): this("",false,null)
 }

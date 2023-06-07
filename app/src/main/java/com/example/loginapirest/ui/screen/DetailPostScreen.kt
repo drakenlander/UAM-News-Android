@@ -72,9 +72,6 @@ fun DetailPostScreen(navController: NavController, postItem: PostItem, oper: Str
                     },
                     colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = Color.Blue)
                 )
-            },
-            bottomBar = {
-                BottomBarDPS(navController = navController)
             }
         ) { padding ->
             if (oper.equals("UPDATE")) {
@@ -87,58 +84,6 @@ fun DetailPostScreen(navController: NavController, postItem: PostItem, oper: Str
         }
     }
 }
-
-@Composable
-fun BottomBarDPS(navController: NavController){
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentDestination = navBackStackEntry?.destination
-
-    NavigationBar() {
-        NavigationBarItem(
-            label = {
-                Text(text = "Home")
-            },
-            icon = {
-                Icon(imageVector = Icons.Default.Home, contentDescription = "Navigation Icon")
-            },
-            selected = currentDestination?.hierarchy?.any {
-                it.route == AppScreen.ListPost.route
-            } == true,
-            onClick = {
-                navController.navigate(AppScreen.ListPost.route)
-            }
-        )
-        NavigationBarItem(
-            label = {
-                Text(text = "Calendar")
-            },
-            icon = {
-                Icon(imageVector = Icons.Default.DateRange, contentDescription = "Navigation Icon")
-            },
-            selected = currentDestination?.hierarchy?.any {
-                it.route == AppScreen.Calendar.route
-            } == true,
-            onClick = {
-                navController.navigate(AppScreen.Calendar.route)
-            }
-        )
-        NavigationBarItem(
-            label = {
-                Text(text = "Profile")
-            },
-            icon = {
-                Icon(imageVector = Icons.Default.Person, contentDescription = "Navigation Icon")
-            },
-            selected = currentDestination?.hierarchy?.any {
-                it.route == AppScreen.DetailUsuario.route
-            } == true,
-            onClick = {
-                navController.navigate(AppScreen.DetailUsuario.route)
-            }
-        )
-    }
-}
-
 @Composable
 fun DetailBodyContent(navController: NavController, item: PostItem, modifier: Modifier, detail: PostItemViewModel) {
 

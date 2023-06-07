@@ -88,7 +88,7 @@ fun BottomBarLPS(navController: NavController){
     NavigationBar() {
         NavigationBarItem(
             label = {
-                Text(text = "Home")
+                Text(text = "Feed")
             },
             icon = {
                 Icon(imageVector = Icons.Default.Home, contentDescription = "Navigation Icon")

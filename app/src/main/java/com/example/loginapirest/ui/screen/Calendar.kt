@@ -25,12 +25,15 @@ import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.runtime.getValue
@@ -41,6 +44,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.loginapirest.ui.navigate.AppScreen
@@ -50,8 +54,8 @@ import java.util.*
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Calendar() {
-    val navController = rememberNavController()
+fun Calendar(navController: NavController) {
+    //val navController = rememberNavController()
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
@@ -64,6 +68,13 @@ fun Calendar() {
                             text = "Calendar",
                             color = Color.White
                         )
+                    },
+                    navigationIcon = {
+                        IconButton(onClick = { navController.navigate(AppScreen.ListPost.route) },
+                            colors= IconButtonDefaults.filledIconButtonColors(contentColor = Color.White)
+                        ) {
+                            Icon(Icons.Filled.ArrowBack, "backIcon")
+                        }
                     },
                     colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = Color.Blue)
                 )
@@ -85,7 +96,7 @@ fun BottomBarC(navController: NavController){
     NavigationBar() {
         NavigationBarItem(
             label = {
-                Text(text = "Home")
+                Text(text = "Feed")
             },
             icon = {
                 Icon(imageVector = Icons.Default.Home, contentDescription = "Navigation Icon")

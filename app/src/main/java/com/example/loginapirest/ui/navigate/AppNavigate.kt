@@ -6,13 +6,15 @@ import android.os.Bundle
 import android.os.Parcelable
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.example.loginapirest.ui.model.PostItem
 import com.example.loginapirest.ui.model.Usuario
 import com.example.loginapirest.ui.screen.Calendar
+import com.example.loginapirest.ui.screen.DetailPostScreen
 import com.example.loginapirest.ui.screen.DetailUsuarioScreen
 import com.example.loginapirest.ui.screen.ListPostScreen
 import com.example.loginapirest.ui.screen.formLogin
@@ -33,26 +35,17 @@ fun AppNavigate() {
         }
 
         composable(route = AppScreen.Calendar.route) {
-            Calendar()
+            Calendar (navController)
         }
 
-        /*composable(route = AppScreen.DetailPost.route + "/{oper}",
+        composable(route = AppScreen.DetailPost.route + "/{oper}",
             arguments = listOf(navArgument(name = "oper") { type = NavType.StringType }))
         {
             val result = navController.previousBackStackEntry?.savedStateHandle?.get<PostItem>("item")
             if (result != null) {
                 DetailPostScreen(navController, result, it.arguments?.getString("oper"))
             }
-        }*/
-/*
-        composable(route = AppScreen.DetailUsuario.route + "/{oper}",
-            arguments = listOf(navArgument(name = "oper") { type = NavType.StringType }))
-        {
-            val result = navController.previousBackStackEntry?.savedStateHandle?.get<UsuarioItem>("item")
-            if (result != null) {
-                DetailUsuarioScreen(navController, result, it.arguments?.getString("oper"))
-            }
-        }*/
+        }
 
         composable(route = AppScreen.DetailUsuario.route) {
             val result = navController.previousBackStackEntry?.savedStateHandle?.get<Usuario>("usuario")
