@@ -82,22 +82,25 @@ fun DetailUsuarioScreen(navController: NavController) {
     var nombre by rememberSaveable { mutableStateOf("")}
     var email by rememberSaveable() { mutableStateOf("") }
     var date by rememberSaveable() { mutableStateOf("") }
+    var deptName by rememberSaveable() { mutableStateOf("") }
 
-    if (list.size == 2) {
+    if (list.size == 3) {
         if (list.get(0) != "*"){
             nombre = list.get(0)
             email = list.get(1)
+            deptName = list.get(2)
         }
     }
 
-    if (list.size == 3) {
+    if (list.size == 4) {
         if (list.get(0) != "*") {
             nombre = list.get(0)
             email = list.get(1)
-            date = list.get(2)
+            deptName = list.get(2)
+            date = list.get(3)
         }
     }
-    list.get(0)
+    //list.get(0)
   //  list.get(1)
 
     //result = savedValue.toString()
@@ -120,7 +123,7 @@ fun DetailUsuarioScreen(navController: NavController) {
     ) { padding ->
         Box(modifier = Modifier.padding(padding)){
             //savedData.value?.let { CreateProfileCard(name = it, email = savedData.value + "@uamv.edu.ni", deptName = "FIA") }
-            CreateProfileCard(name = nombre, email = email, deptName = "FIA")
+            CreateProfileCard(name = nombre, email = email, deptName = deptName)
         //savedDeptName.value?.let { savedEMail.value?.let { it1 -> savedName.value?.let { it2 -> CreateProfileCard(name = it2, email = it1, deptName = it) } } }
         }
     }
@@ -167,7 +170,7 @@ private fun CreateInfo(name: String, email: String, deptName: String) {
         )
 
         Text(
-            text = "FIA",
+            text = deptName,
             modifier = Modifier.padding(3.dp),
             style = MaterialTheme.typography.bodyMedium
         )

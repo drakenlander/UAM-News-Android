@@ -12,6 +12,7 @@ import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -33,6 +34,7 @@ import com.example.loginapirest.ui.viewmodel.PostViewModel
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -141,6 +143,7 @@ fun Posts(state: PostViewModel.UIState, modifier: Modifier, navController: NavCo
         ) {
             itemsIndexed(items = state.listPost) { index, item ->
                 PostItem(postItem = item, navController, modifier)
+                Divider(color = Color.Black, thickness = 1.dp)
                 //Text(text = item.publicationDate)
                 //Text(text = item.saveCount.toString())
                 //Text(text = item.caption)

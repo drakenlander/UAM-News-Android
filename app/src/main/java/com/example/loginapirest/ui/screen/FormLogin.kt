@@ -133,7 +133,7 @@ fun formLogin(navController: NavHostController){
             /*dataStoreName.saveValue(usuario.value.name)
             dataStoreEmail.saveValue(usuario.value.email)
             usuario.value.department?.let { dataStoreDeptName.saveValue(it.name) }*/
-            dataStore.saveValue(usuario.value.name + "*" + usuario.value.email)
+            dataStore.saveValue(usuario.value.name + "*" + usuario.value.email + "*" + (usuario.value.department?.name))
         }
     }
 

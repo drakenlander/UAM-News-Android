@@ -1,5 +1,6 @@
 package com.example.loginapirest.ui.screen
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -23,6 +24,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavController
 import com.example.loginapirest.R
@@ -34,18 +36,20 @@ fun PostItem(postItem: PostItem, navController: NavController, modifier: Modifie
     val context = LocalContext.current
 
     Column(
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier.background(Color(216, 220, 227)),
     ) {
-        Column(modifier = modifier.fillMaxWidth()) {
-            Text(text = postItem.publicationDate)
-            Text(text = postItem.caption)
-            Row(modifier = Modifier
-                .fillMaxWidth()
+        Column(modifier = Modifier.fillMaxWidth()) {
+            Text(text = postItem.publicationDate, fontWeight = FontWeight.Bold)
+            Text(text = postItem.caption,
+                modifier = Modifier
                 .clickable {
                     navController.currentBackStackEntry?.savedStateHandle?.set("item", postItem)
                     navController.navigate(AppScreen.DetailPost.route + "/DETAIL")
                 },
-                horizontalArrangement = Arrangement.SpaceBetween) {
+                fontWeight = FontWeight.ExtraBold
+            )
+            Row(
+                horizontalArrangement = Arrangement.End) {
                 Row() {
                     Text(text = "Le gusta a " + postItem.saveCount.toString() + " personas")
                 }
@@ -53,7 +57,7 @@ fun PostItem(postItem: PostItem, navController: NavController, modifier: Modifie
                     Icon(
                         modifier = Modifier.size(25.dp),
                         tint = Color.Black,
-                        painter = painterResource(id = R.drawable.ic_person),
+                        painter = painterResource(id = R.drawable.ic_like),
                         contentDescription = "like border"
                     )
                 }
