@@ -1,6 +1,7 @@
 package com.example.loginapirest.ui.screen
 
 import android.util.Log
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
@@ -26,6 +28,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
@@ -35,7 +38,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.loginapirest.R
-import com.example.loginapirest.ui.activity.SimpleAlertDialogue
 import com.example.loginapirest.ui.config.DataStoreManager
 import com.example.loginapirest.ui.model.Usuario
 import com.example.loginapirest.ui.viewmodel.LoginModel
@@ -108,10 +110,10 @@ fun formLogin(navController: NavHostController){
     var isSuccess by remember { mutableStateOf(false) }
 
     // datastore Email
-    val dataStore = DataStoreManager(context)
+    val dataStoreName = DataStoreManager(context)
     // get saved email
-    val savedEmail = dataStore.getValue.collectAsState(initial = "")
-    Log.d("SAVED EMAIL",savedEmail.value.toString())
+    //val savedEmail = dataStore.getValue.collectAsState(initial = "")
+    //Log.d("SAVED EMAIL",savedEmail.value.toString())
 
     //var item : Usuario = Usuario()
     var usuario = remember { mutableStateOf(Usuario()) }
@@ -124,9 +126,12 @@ fun formLogin(navController: NavHostController){
             usuario.value = state.loginResponse.usuario!!
             Log.d("SUCCESS!", usuario.value.name)
             //dataStore.saveValue(state.loginResponse.msg)
-            dataStore.saveValue(usuario.value.email + "*" + (usuario.value.department?.name ?: String))
+            //dataStore.saveValue(usuario.value.email + "*" + (usuario.value.department?.name ?: String))
+            dataStoreName.saveValue(usuario.value.name)
         }
     }
+
+    val result = dataStoreName.getValue.collectAsState(initial = "") //***
 
     if (isLoading) {
         Box(
@@ -138,7 +143,7 @@ fun formLogin(navController: NavHostController){
 
     if (isSuccess) {
         LaunchedEffect(Unit) {
-            navController.currentBackStackEntry?.savedStateHandle?.set("usuario",savedEmail)
+            //navController.currentBackStackEntry?.savedStateHandle?.set("usuario",result)
             navController.navigate(route = AppScreen.DetailUsuario.route)
         }
     }
@@ -148,6 +153,13 @@ fun formLogin(navController: NavHostController){
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Image(
+            painter = painterResource(id = R.drawable.uamlogo_adobe_express),
+            contentDescription = "Uam Logo",
+            contentScale = ContentScale.FillBounds,
+            modifier = Modifier.size(250.dp, 150.dp)
+        )
+        Spacer(modifier = Modifier.height(12.dp))
         emailField(loginModel)
         Spacer(modifier = Modifier.height(16.dp))
         passwordField(loginModel)
@@ -155,4 +167,3 @@ fun formLogin(navController: NavHostController){
         button(loginModel)
     }
 }
-

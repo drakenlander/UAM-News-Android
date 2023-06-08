@@ -36,6 +36,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -47,6 +48,7 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.loginapirest.ui.config.DataStoreManager
 import com.example.loginapirest.ui.navigate.AppScreen
 import java.util.*
 
@@ -171,8 +173,5 @@ fun DatePickerSample() {
         Spacer(modifier = Modifier.size(25.dp))
 
         Text(text = "Fecha del siguiente evento: ${mDate.value}", fontSize = 15.sp, textAlign = TextAlign.Center)
-        for (i in arr) {
-            Text(text = "${i}")
-        }
     }
 }

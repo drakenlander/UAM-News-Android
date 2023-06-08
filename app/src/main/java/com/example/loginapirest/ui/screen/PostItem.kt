@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -19,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -31,42 +33,37 @@ import com.example.loginapirest.ui.navigate.AppScreen
 fun PostItem(postItem: PostItem, navController: NavController, modifier: Modifier) {
     val context = LocalContext.current
 
-    Card(
-        modifier = Modifier
-            .padding(8.dp, 4.dp)
-            .fillMaxWidth()
-            .height(110.dp), shape = RoundedCornerShape(8.dp),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 10.dp
-        )
+    Column(
+        modifier = modifier.fillMaxWidth(),
     ) {
-        Row(
-            Modifier
-                .padding(4.dp)
-                .fillMaxSize()
-        ) {
-            Column(
-                verticalArrangement = Arrangement.Center,
-                modifier = Modifier
-                    .padding(4.dp)
-                    .fillMaxHeight()
-                    .weight(0.8f)
-                    .clickable {
-                        navController.currentBackStackEntry?.savedStateHandle?.set("item", postItem)
-                        navController.navigate(AppScreen.DetailPost.route + "/DETAIL")
-                    }
-            ) {
-                Text(
-                    text = postItem.caption, //check
-                    style = MaterialTheme.typography.labelMedium,
-                    fontWeight = FontWeight.Bold
-                )
+        Column(modifier = modifier.fillMaxWidth()) {
+            Text(text = postItem.publicationDate)
+            Text(text = postItem.caption)
+            Row(modifier = Modifier
+                .fillMaxWidth()
+                .clickable {
+                    navController.currentBackStackEntry?.savedStateHandle?.set("item", postItem)
+                    navController.navigate(AppScreen.DetailPost.route + "/DETAIL")
+                },
+                horizontalArrangement = Arrangement.SpaceBetween) {
+                Row() {
+                    Text(text = "Le gusta a " + postItem.saveCount.toString() + " personas")
+                }
+                IconButton(onClick = { }) {
+                    Icon(
+                        modifier = Modifier.size(25.dp),
+                        tint = Color.Black,
+                        painter = painterResource(id = R.drawable.ic_person),
+                        contentDescription = "like border"
+                    )
+                }
                 IconButton(onClick = {
                     navController.currentBackStackEntry?.savedStateHandle?.set("item", postItem)
                     navController.navigate(AppScreen.DetailPost.route + "/UPDATE")}) {
                     Icon(painter = painterResource(R.drawable.ic_desing_libro_update), contentDescription = null )
                 }
             }
+
         }
     }
 }
