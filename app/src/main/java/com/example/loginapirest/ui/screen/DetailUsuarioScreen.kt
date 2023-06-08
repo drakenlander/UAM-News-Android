@@ -1,6 +1,7 @@
 package com.example.loginapirest.ui.screen
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -16,19 +17,26 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.loginapirest.ui.config.DataStoreManager
 import com.example.loginapirest.ui.model.Usuario
 import com.example.loginapirest.ui.navigate.AppScreen
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailUsuarioScreen(navController: NavController, result: Usuario?) {
+fun DetailUsuarioScreen(navController: NavController, result: String) {
+    val context = LocalContext.current
+    val dataStore = DataStoreManager(context)
+    val savedValue = dataStore.getValue.collectAsState(initial = "")
+    Log.d("SAVED VALUE",savedValue.value.toString())
     Scaffold(
         topBar = {
             TopAppBar(
@@ -47,7 +55,7 @@ fun DetailUsuarioScreen(navController: NavController, result: Usuario?) {
     ) { padding ->
         Box(modifier = Modifier.padding(padding)){
             if (result != null) {
-                Text(text = "usuario: ${result.name}")
+                Text(text = "usuario: ${savedValue}")
             }
         }
     }

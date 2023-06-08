@@ -36,6 +36,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.loginapirest.R
 import com.example.loginapirest.ui.activity.SimpleAlertDialogue
+import com.example.loginapirest.ui.config.DataStoreManager
 import com.example.loginapirest.ui.model.Usuario
 import com.example.loginapirest.ui.viewmodel.LoginModel
 import com.example.loginapirest.ui.navigate.AppScreen
@@ -105,6 +106,13 @@ fun formLogin(navController: NavHostController){
     val state by loginModel.state.collectAsState()
     var isLoading by remember { mutableStateOf(false) }
     var isSuccess by remember { mutableStateOf(false) }
+
+    // datastore Email
+    val dataStore = DataStoreManager(context)
+    // get saved email
+    val savedEmail = dataStore.getValue.collectAsState(initial = "")
+    Log.d("SAVED EMAIL",savedEmail.value.toString())
+
     //var item : Usuario = Usuario()
     var usuario = remember { mutableStateOf(Usuario()) }
 
@@ -115,6 +123,8 @@ fun formLogin(navController: NavHostController){
         if (state.loginResponse.usuario != null) {
             usuario.value = state.loginResponse.usuario!!
             Log.d("SUCCESS!", usuario.value.name)
+            //dataStore.saveValue(state.loginResponse.msg)
+            dataStore.saveValue(usuario.value.email)
         }
     }
 
@@ -128,7 +138,7 @@ fun formLogin(navController: NavHostController){
 
     if (isSuccess) {
         LaunchedEffect(Unit) {
-            navController.currentBackStackEntry?.savedStateHandle?.set("usuario",usuario.value)
+            navController.currentBackStackEntry?.savedStateHandle?.set("usuario",savedEmail)
             navController.navigate(route = AppScreen.DetailUsuario.route)
         }
     }

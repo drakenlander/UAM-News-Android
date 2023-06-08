@@ -48,8 +48,10 @@ fun AppNavigate() {
         }
 
         composable(route = AppScreen.DetailUsuario.route) {
-            val result = navController.previousBackStackEntry?.savedStateHandle?.get<Usuario>("usuario")
-            DetailUsuarioScreen(navController = navController, result)
+            val result = navController.previousBackStackEntry?.savedStateHandle?.get<String>("usuario")
+            if (result != null) {
+                DetailUsuarioScreen(navController = navController, result)
+            }
         }
     }
 }
