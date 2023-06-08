@@ -61,6 +61,26 @@ fun DetailUsuarioScreen(navController: NavController, result: String) {
     }
 }
 
+suspend fun split(ds: DataStoreManager) {
+    val one = ds.getValue
+    val list = one.toString().split("*")
+}
+
+suspend fun checkSize(ds: DataStoreManager, list: List<String>): String {
+    val one: String
+    if (list.size > 2) {
+        one = list.get(0) + "*" + list.get(1) + "*" + list.get(2)
+    }
+
+    else {
+        one = list.get(0) + "*" + list.get(1)
+    }
+
+    ds.saveValue(one)
+
+    return one
+}
+
 @Composable
 fun BottomBarU(navController: NavController){
     val navBackStackEntry by navController.currentBackStackEntryAsState()
