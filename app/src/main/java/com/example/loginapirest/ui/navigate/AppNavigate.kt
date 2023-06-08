@@ -21,7 +21,7 @@ import com.example.loginapirest.ui.screen.formLogin
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
-@RequiresApi(Build.VERSION_CODES.N)
+@RequiresApi(26)
 @Composable
 fun AppNavigate() {
     val navController = rememberNavController()

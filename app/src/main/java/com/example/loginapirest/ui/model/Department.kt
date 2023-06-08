@@ -9,4 +9,6 @@ import kotlinx.serialization.Serializable
 data class Department(
     var deptId: Int,
     val name: String
-) : Parcelable
+) : Parcelable {
+    constructor(): this(0, "")
+}

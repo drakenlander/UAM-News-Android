@@ -110,7 +110,10 @@ fun formLogin(navController: NavHostController){
     var isSuccess by remember { mutableStateOf(false) }
 
     // datastore Email
-    val dataStoreName = DataStoreManager(context)
+    /*val dataStoreName = DataStoreManager(context)
+    val dataStoreEmail = DataStoreManager(context)
+    val dataStoreDeptName = DataStoreManager(context)*/
+    val dataStore = DataStoreManager(context)
     // get saved email
     //val savedEmail = dataStore.getValue.collectAsState(initial = "")
     //Log.d("SAVED EMAIL",savedEmail.value.toString())
@@ -125,13 +128,16 @@ fun formLogin(navController: NavHostController){
         if (state.loginResponse.usuario != null) {
             usuario.value = state.loginResponse.usuario!!
             Log.d("SUCCESS!", usuario.value.name)
-            //dataStore.saveValue(state.loginResponse.msg)
+            dataStore.saveValue(state.loginResponse.msg)
             //dataStore.saveValue(usuario.value.email + "*" + (usuario.value.department?.name ?: String))
-            dataStoreName.saveValue(usuario.value.name)
+            /*dataStoreName.saveValue(usuario.value.name)
+            dataStoreEmail.saveValue(usuario.value.email)
+            usuario.value.department?.let { dataStoreDeptName.saveValue(it.name) }*/
+            dataStore.saveValue(usuario.value.name + "*" + usuario.value.email)
         }
     }
 
-    val result = dataStoreName.getValue.collectAsState(initial = "") //***
+    val result = dataStore.getValue.collectAsState(initial = "") //***
 
     if (isLoading) {
         Box(
