@@ -124,7 +124,7 @@ fun formLogin(navController: NavHostController){
             usuario.value = state.loginResponse.usuario!!
             Log.d("SUCCESS!", usuario.value.name)
             //dataStore.saveValue(state.loginResponse.msg)
-            dataStore.saveValue(usuario.value.email)
+            dataStore.saveValue(usuario.value.email + "*" + (usuario.value.department?.name ?: String))
         }
     }
 
