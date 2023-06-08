@@ -73,10 +73,10 @@ fun DetailUsuarioScreen(navController: NavController) {
     val dataStore = DataStoreManager(context)
     val savedData = dataStore.getValue.collectAsState(initial = "")
 
-    var list: List<String> = emptyList()
+    /*var list: List<String> = emptyList()
     list = savedData.value?.let { split(it) }!!
     list.get(0)
-    list.get(1)
+    list.get(1)*/
 
     //result = savedValue.toString()
     //Log.d("SAVED VALUE",savedName.toString())
