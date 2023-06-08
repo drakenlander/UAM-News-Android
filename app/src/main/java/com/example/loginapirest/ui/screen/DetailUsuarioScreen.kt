@@ -41,6 +41,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -55,6 +57,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.loginapirest.R
 import com.example.loginapirest.ui.config.DataStoreManager
 import com.example.loginapirest.ui.navigate.AppScreen
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 
 @RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -73,10 +77,28 @@ fun DetailUsuarioScreen(navController: NavController) {
     val dataStore = DataStoreManager(context)
     val savedData = dataStore.getValue.collectAsState(initial = "")
 
-    /*var list: List<String> = emptyList()
-    list = savedData.value?.let { split(it) }!!
+    var list: List<String> = savedData.value?.let { split(it) }!!
+
+    var nombre by rememberSaveable { mutableStateOf("")}
+    var email by rememberSaveable() { mutableStateOf("") }
+    var date by rememberSaveable() { mutableStateOf("") }
+
+    if (list.size == 2) {
+        if (list.get(0) != "*"){
+            nombre = list.get(0)
+            email = list.get(1)
+        }
+    }
+
+    if (list.size == 3) {
+        if (list.get(0) != "*") {
+            nombre = list.get(0)
+            email = list.get(1)
+            date = list.get(2)
+        }
+    }
     list.get(0)
-    list.get(1)*/
+  //  list.get(1)
 
     //result = savedValue.toString()
     //Log.d("SAVED VALUE",savedName.toString())
@@ -97,8 +119,9 @@ fun DetailUsuarioScreen(navController: NavController) {
         }
     ) { padding ->
         Box(modifier = Modifier.padding(padding)){
-            savedData.value?.let { CreateProfileCard(name = it, email = savedData.value + "@uamv.edu.ni", deptName = "FIA") }
-            //savedDeptName.value?.let { savedEMail.value?.let { it1 -> savedName.value?.let { it2 -> CreateProfileCard(name = it2, email = it1, deptName = it) } } }
+            //savedData.value?.let { CreateProfileCard(name = it, email = savedData.value + "@uamv.edu.ni", deptName = "FIA") }
+            CreateProfileCard(name = nombre, email = email, deptName = "FIA")
+        //savedDeptName.value?.let { savedEMail.value?.let { it1 -> savedName.value?.let { it2 -> CreateProfileCard(name = it2, email = it1, deptName = it) } } }
         }
     }
 }
@@ -139,7 +162,7 @@ private fun CreateInfo(name: String, email: String, deptName: String) {
         )
 
         Text(
-            text = email + "@uamv.edu.ni",
+            text = email,
             modifier = Modifier.padding(3.dp)
         )
 
